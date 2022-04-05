@@ -16,6 +16,8 @@ jobs:
       - node/install
       - node/install-yarn
       - checkout
+      # this line to setup aws cli because we need it for deploying to S3 or elasticbeanstalk
+      - aws-cli/setup
       # install dependencies in both apps
       - run:
           name: Front-End Install
@@ -33,3 +35,7 @@ jobs:
           name: Backend build
           command: |
             npm run backend:build
+      - run:
+          name: frontend-deploy
+          command: |
+            npm run frontend:deploy
